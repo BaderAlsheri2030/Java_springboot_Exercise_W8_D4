@@ -17,11 +17,6 @@ public class AddressController {
 
     private final AddressService service;
 
-    @GetMapping("/get")
-    public ResponseEntity getAddresses(){
-        return ResponseEntity.status(200).body(service.getAddresses());
-    }
-
     @PostMapping("/add")
     public ResponseEntity addAddress(@Valid @RequestBody AddressDTO addressDTO){
         service.addAddress(addressDTO);
@@ -38,5 +33,11 @@ public class AddressController {
     public ResponseEntity deleteAddress(@PathVariable Integer id){
         service.deleteAddress(id);
         return ResponseEntity.status(200).body("address deleted");
+    }
+
+    @GetMapping("/details/{id}")
+    public ResponseEntity getTeacherDetails(@PathVariable Integer id){
+
+        return ResponseEntity.status(200).body(service.getTeacherDetails(id));
     }
 }

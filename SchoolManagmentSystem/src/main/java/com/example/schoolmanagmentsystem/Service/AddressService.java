@@ -61,4 +61,16 @@ public class AddressService {
         teacher.setAddress(null);
         addressRepository.delete(address);
     }
+
+    public Address getTeacherDetails(Integer id){
+        Teacher teacher = teacherRepository.findTeacherById(id);
+        if (teacher == null){
+            throw new ApiException("Invalid teacher id");
+        }
+        Address address = addressRepository.findAddressById(teacher.getId());
+        if (address == null){
+            throw new ApiException("Address doesn't exist");
+        }
+        return address;
+    }
 }
